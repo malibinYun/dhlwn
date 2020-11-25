@@ -18,34 +18,13 @@
         android:background="@color/background"
         tools:context=".StopWatchActivity">
 
-        <TextView
-            android:id="@+id/button_reset"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/round_rectangle_grey"
-            android:fontFamily="@font/gmarketsansmedium"
-            android:gravity="center"
-            android:onClick="@{(view) -> viewModel.reset()}"
-            android:paddingStart="16dp"
-            android:paddingTop="8dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="8dp"
-            android:text="reset"
-            android:textColor="@color/grey"
-            android:textSize="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.3000003">
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/text_time"
@@ -54,17 +33,17 @@
                 android:fontFamily="@font/digital7mono"
                 android:text="@{viewModel.displayTime}"
                 android:textColor="@color/text_color"
-                android:textSize="112dp"
+                android:textSize="270dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="00:00.00" />
+                tools:text="00.00" />
 
             <TextView
                 android:id="@+id/button_start"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="40dp"
                 android:background="@drawable/round_rectangle"
                 android:fontFamily="@font/gmarketsansmedium"
                 android:gravity="center"
@@ -86,7 +65,7 @@
                 android:id="@+id/button_stop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="40dp"
                 android:background="@drawable/round_rectangle"
                 android:fontFamily="@font/gmarketsansmedium"
                 android:gravity="center"
@@ -104,6 +83,26 @@
                 app:layout_constraintTop_toBottomOf="@+id/text_time"
                 tools:visibility="gone" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/button_reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/round_rectangle_grey"
+            android:fontFamily="@font/gmarketsansmedium"
+            android:gravity="center"
+            android:onClick="@{(view) -> viewModel.reset()}"
+            android:paddingStart="16dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="8dp"
+            android:text="reset"
+            android:textColor="@color/grey"
+            android:textSize="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
