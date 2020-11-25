@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.malibin.stopwatch" >
+    package="com.malibin.stopwatch">
 
     <application
+        android:name=".StopWatchApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.StopWatch" >
-        <activity android:name=".StopWatchActivity" >
+        android:theme="@style/Theme.StopWatch">
+        <activity android:name=".StopWatchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
