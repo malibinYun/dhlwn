@@ -67,13 +67,29 @@ class StopWatchViewModel @ViewModelInject constructor() : ViewModel() {
 
     fun stop() {
         cancelAllJobs()
-        turnOnStartButtonAfter(DELAY_MILLIS)
         controlCustomerRequirement()
     }
 
     private fun controlCustomerRequirement() {
-        if (latestTimeRecord in _29_SECONDS.._31_SECONDS) {
-            _displayTime.value = CUSTOMER_REQUIREMENT
+        if (latestTimeRecord in _29_SECONDS.._31_73_SECONDS) {
+            _isStopVisible.value = false
+            viewModelScope.launch {
+                var diff = latestTimeRecord
+                while (diff < CUSTOMER_REQUIREMENT_MILLIS) {
+                    val startMilliseconds = System.currentTimeMillis()
+                    delay(1)
+                    diff += System.currentTimeMillis() - startMilliseconds
+                    val minutes = TimeUnit.MILLISECONDS.toMinutes(diff)
+                    val seconds = TimeUnit.MILLISECONDS.toSeconds(diff) % 60
+                    val millis = diff / 10 % 100
+                    val displayTime = if (minutes == 0L) "%02d.%02d".format(seconds, millis)
+                    else "%02d:%02d.%02d".format(minutes, seconds, millis)
+                    _displayTime.value = displayTime
+                }
+                turnOnStartButtonAfter(DELAY_MILLIS)
+            }
+        } else {
+            turnOnStartButtonAfter(DELAY_MILLIS)
         }
     }
 
@@ -86,23 +102,16 @@ class StopWatchViewModel @ViewModelInject constructor() : ViewModel() {
         runningJobs.add(job)
     }
 
-    fun reset() {
-        cancelAllJobs()
-        _displayTime.value = INITIAL_TIME
-        _isStartVisible.value = true
-        _isStopVisible.value = false
-    }
-
     private fun cancelAllJobs() {
         runningJobs.forEach { it.cancel() }
         runningJobs.clear()
     }
 
     companion object {
-        private const val DELAY_MILLIS = 3_000L
+        private const val DELAY_MILLIS = 2_000L
         private const val INITIAL_TIME = "00.00"
-        private const val CUSTOMER_REQUIREMENT = "31.73"
+        private const val CUSTOMER_REQUIREMENT_MILLIS = 31730L
         private val _29_SECONDS = TimeUnit.SECONDS.toMillis(29)
-        private val _31_SECONDS = TimeUnit.SECONDS.toMillis(31)
+        private val _31_73_SECONDS = TimeUnit.MILLISECONDS.toMillis(31730L)
     }
 }
